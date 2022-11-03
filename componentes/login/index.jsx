@@ -1,5 +1,6 @@
 import { InputPublico } from "../inputPublico";
 import { Botao } from "../botao";
+import { validarEmail, validarSenha } from "../../utils/validadores";
 
 import emailImg from "../../public/imagens/email.svg";
 import senhaImg from "../../public/imagens/senha.svg";
@@ -12,6 +13,10 @@ import { useState } from "react";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+
+  const validarFormulario = () => {
+    return validarEmail(email) && validarSenha(senha);
+  };
 
   return (
     <section className={`paginaLogin paginaPublica`}>
@@ -32,6 +37,8 @@ export default function Login() {
             placeholder={`E-mail`}
             alterarValor={e => setEmail(e.target.value)}
             value={email}
+            mensagemValidacao="O endereço informado é inválido!"
+            exibirMensagemvalidacao={email && !validarEmail(email)}
           />
           <InputPublico
             imagem={senhaImg}
@@ -39,9 +46,15 @@ export default function Login() {
             placeholder={`Senha`}
             alterarValor={e => setSenha(e.target.value)}
             value={senha}
+            mensagemValidacao="Precisa ter pelo menos 4 carácteres!"
+            exibirMensagemvalidacao={senha && !validarSenha(senha)}
           />
 
-          <Botao title={"Login"} type="submit" desabilitado={false} />
+          <Botao
+            title={"Login"}
+            type="submit"
+            desabilitado={!validarFormulario()}
+          />
         </form>
         <footer className="footerPaginaPublica">
           <p>Não possui conta?</p>

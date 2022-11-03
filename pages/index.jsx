@@ -1,10 +1,10 @@
-import  Login  from "../componentes/login";
-import  Cadastro  from "./cadastro";
+import Login from "../componentes/login";
+import Cadastro from "./cadastro";
 
 export default function Index() {
   return (
     <>
-      <Login/>
+      <Login />
       <Cadastro />
     </>
   );
