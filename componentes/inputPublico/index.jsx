@@ -15,7 +15,7 @@ export const InputPublico = ({
         <Image
           src={imagem}
           alt="imagem do campo"
-          className="iconeInputPublico"
+          className="iconInputPublico"
           width={20}
           height={20}
         />

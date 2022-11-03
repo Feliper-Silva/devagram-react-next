@@ -16,7 +16,12 @@ export const Login = () => {
   return (
     <section className={`paginaLogin paginaPublica`}>
       <div className="logoContainer">
-        <Image src={logoImg} alt="Logo Devagram" layout="fill" />
+        <Image
+          src={logoImg}
+          className="logo"
+          alt="Logo Devagram"
+          layout="fill"
+        />
       </div>
 
       <div className="conteudoPaginaPublica">
