@@ -43,7 +43,6 @@ export const UploadImagem = ({
       className={`uploadImagemContainer ${className}`}
       onClick={abrirSeletorArquivos}
     >
-      <button>Enviar imagem</button>
       {imagemPreview && (
         <div className="imagemPreviewContainer">
           <img

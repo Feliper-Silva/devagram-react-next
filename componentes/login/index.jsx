@@ -9,7 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-export const Login = () => {
+export default function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
@@ -41,11 +41,7 @@ export const Login = () => {
             value={senha}
           />
 
-          <Botao
-            title={"Login"}
-            type="submit"
-            manipularClique={() => console.log("clicando")}
-          />
+          <Botao title={"Login"} type="submit" desabilitado={false} />
         </form>
         <footer className="footerPaginaPublica">
           <p>Não possui conta?</p>
@@ -54,4 +50,4 @@ export const Login = () => {
       </div>
     </section>
   );
-};
+}
