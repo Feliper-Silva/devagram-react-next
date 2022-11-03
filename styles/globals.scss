@@ -1,17 +1,13 @@
 @import "variaveis.scss";
-@import "../public/fonts/fonts.scss";
 
 * {
   font-family: $fontRegular;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
-
-@import "../componentes/botao/botao.scss";
-@import "./paginaPublica.scss";
 
 html,
 body,
-#_next {
+#__next {
   height: 100%;
   margin: 0;
 }
@@ -24,3 +20,25 @@ body,
 .oculto {
   display: none;
 }
+
+input {
+  &::placeholder {
+    /* chrome, opera, safari e firefox */
+    color: $cinza2;
+    opacity: 1;
+  }
+
+  &:-ms-input-placeholder {
+    /* ie 10-11*/
+    color: $cinza2;
+  }
+
+  &::-ms-input-placeholder {
+    color: $cinza2;
+  }
+}
+
+@import "../public/fonts/fonts.scss";
+@import "../componentes/botao/botao.scss";
+@import "./paginaPublica.scss";
+@import "../componentes/inputPublico/inputPublico.scss";
