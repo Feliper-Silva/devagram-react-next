@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @next/next/no-img-element */
 import { useRef, useEffect } from "react";
 
 export const UploadImagem = ({
@@ -35,7 +33,6 @@ export const UploadImagem = ({
         preview: fileReader.result,
         arquivo
       });
-      console.log(fileReader.result);
     };
   };
   return (

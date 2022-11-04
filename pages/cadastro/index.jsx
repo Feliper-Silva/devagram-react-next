@@ -18,20 +18,51 @@ import {
   validarConfirmacaoSenha
 } from "../../utils/validadores";
 
+import { PostCadastro } from "../../services/UsuarioService";
+
 export default function Cadastro() {
   const [imagem, setImagem] = useState(null);
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [confirmaSenha, setConfirmaSenha] = useState("");
+  const [sendFormulario, setSendFormulario] = useState(false);
 
   const validarFormulario = () => {
     return (
       validarNome(nome) &&
       validarEmail(email) &&
       validarSenha(senha) &&
-      validarConfirmacaoSenha(confirmaSenha)
+      validarConfirmacaoSenha(senha, confirmaSenha)
     );
+  };
+
+  const sendSubmitFormulario = async e => {
+    e.preventDefault();
+
+    if (!validarFormulario()) {
+      return;
+    }
+    setSendFormulario(true);
+    try {
+      const corpoReqCadastro = new FormData();
+      corpoReqCadastro.append("nome", nome);
+      corpoReqCadastro.append("email", email);
+      corpoReqCadastro.append("senha", senha);
+
+      if (imagem?.arquivo) {
+        corpoReqCadastro.append("file", imagem.arquivo);
+      }
+
+      await PostCadastro(corpoReqCadastro);
+      alert("Cadastrado com sucesso!");
+    } catch (error) {
+      alert(
+        `Não foi possível realizar o cadastro ${error?.response?.data?.error}`
+      );
+    }
+
+    setSendFormulario(false);
   };
   return (
     <>
@@ -46,7 +77,7 @@ export default function Cadastro() {
         </div>
 
         <div className="conteudoPaginaPublica">
-          <form>
+          <form onSubmit={sendSubmitFormulario}>
             <UploadImagem
               imagemPreviewClassName="avatar avatarPreview"
               imagemPreview={imagem?.preview || avatarImg.src}
@@ -93,7 +124,7 @@ export default function Cadastro() {
             <Botao
               title="Cadastrar"
               type="submit"
-              desabilitado={!validarFormulario()}
+              desabilitado={!validarFormulario() || setSendFormulario}
             />
           </form>
           <footer className="footerPaginaPublica">
