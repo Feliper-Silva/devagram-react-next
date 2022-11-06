@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { Botao } from "../../componentes/botao";
 import { InputPublico } from "../../componentes/inputPublico";
@@ -18,7 +19,9 @@ import {
   validarConfirmacaoSenha
 } from "../../utils/validadores";
 
-import { PostCadastro } from "../../services/UsuarioService";
+import UsuarioService from "../../services/UsuarioService";
+
+const usuarioService = new UsuarioService();
 
 export default function Cadastro() {
   const [imagem, setImagem] = useState(null);
@@ -27,6 +30,8 @@ export default function Cadastro() {
   const [senha, setSenha] = useState("");
   const [confirmaSenha, setConfirmaSenha] = useState("");
   const [sendFormulario, setSendFormulario] = useState(false);
+
+  const router = useRouter();
 
   const validarFormulario = () => {
     return (
@@ -54,11 +59,15 @@ export default function Cadastro() {
         corpoReqCadastro.append("file", imagem.arquivo);
       }
 
-      await PostCadastro(corpoReqCadastro);
-      alert("Cadastrado com sucesso!");
+      await usuarioService.cadastro(corpoReqCadastro);
+      await usuarioService.login({
+        login: email,
+        senha
+      });
+      router.push("/");
     } catch (error) {
       alert(
-        `Não foi possível realizar o cadastro ${error?.response?.data?.error}`
+        `Não foi possível realizar o cadastro! \n${error?.response?.data?.error}`
       );
     }
 
@@ -124,7 +133,7 @@ export default function Cadastro() {
             <Botao
               title="Cadastrar"
               type="submit"
-              desabilitado={!validarFormulario() || setSendFormulario}
+              desabilitado={!validarFormulario() || sendFormulario}
             />
           </form>
           <footer className="footerPaginaPublica">
