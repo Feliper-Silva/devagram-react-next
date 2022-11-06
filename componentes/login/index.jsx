@@ -36,6 +36,7 @@ export default function Login({ afterAuthenticate }) {
         login: email,
         senha
       });
+      
       if (afterAuthenticate) {
         afterAuthenticate();
       }
