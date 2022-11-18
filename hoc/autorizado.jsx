@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import UsuarioService from "../services/UsuarioService";
 import Header from "../componentes/layout/header.jsx";
+import Footer from "../componentes/layout/footer";
 
 const usuarioService = new UsuarioService();
 
@@ -18,6 +19,7 @@ export default function Autorizado(Componente) {
         <>
           <Header />
           <Componente {...props} />
+          <Footer />
         </>
       );
     }

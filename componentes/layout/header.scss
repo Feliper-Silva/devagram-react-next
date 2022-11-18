@@ -1,0 +1,77 @@
+.headerPrincipal {
+  border-bottom: 0.5px solid $cinza2;
+
+  .conteudoHeaderPrincipal {
+    display: flex;
+    padding: 0.5rem 1rem;
+
+    .logoHeaderPrincipal {
+      position: relative;
+      width: 8.75rem;
+      height: 1.875rem;
+    }
+
+    .barraPesquisa {
+      position: relative;
+      flex: 1;
+      margin-left: 1rem;
+      display: flex;
+      align-items: center;
+
+      .containerImagemLupa {
+        position: absolute;
+        width: 1.25rem;
+        height: 1.25rem;
+        left: 0.5rem;
+      }
+
+      input {
+        background-color: $corPrimaria4;
+        border: none;
+        outline: none;
+        font-size: 0.75rem;
+        padding: 0.5rem 0.5rem 0.5rem 2rem;
+        font-weight: $fontLight;
+        border-radius: 0.25rem;
+        color: $corPrimaria2;
+
+        &:focus {
+          border: 1px solid $corPrimaria2;
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: $desktopBreakpoint) {
+    background-color: $branco;
+    border: none;
+
+    .conteudoHeaderPrincipal {
+      max-width: 60%;
+      margin: auto;
+      align-items: center;
+      justify-content: center;
+
+      .logoHeaderPrincipal {
+        width: 12.5rem;
+      }
+
+      .barraPesquisa {
+        flex: 0.6;
+        margin: 0 0.313rem 0 1.875rem;
+
+        .input {
+          width: 100%;
+        }
+      }
+
+      .barraNavegacao {
+        ul {
+          li {
+            margin: 0 0 0 1.25rem;
+          }
+        }
+      }
+    }
+  }
+}

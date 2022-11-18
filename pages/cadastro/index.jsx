@@ -136,10 +136,10 @@ export default function Cadastro() {
               desabilitado={!validarFormulario() || sendFormulario}
             />
           </form>
-          <footer className="footerPaginaPublica">
+          <div className="footerPaginaPublica">
             <p>Já possui uma conta?</p>
             <Link href="/">Faça seu login agora!</Link>
-          </footer>
+          </div>
         </div>
       </section>
     </>
